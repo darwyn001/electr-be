@@ -2,8 +2,11 @@ package gt.sgo.bedistelsatracking.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Table(name = "actividad", indexes = {
         @Index(name = "estado", columnList = "estado"),
@@ -23,14 +26,19 @@ public class Activity {
     private String name;
 
     @JsonProperty
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "responsable")
     private Usuario attendant;
 
     @JsonProperty
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "estado")
     private State state;
+
+    @JsonProperty
+    @Column(name = "fecha_creacion", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @CreationTimestamp
+    private Date created;
 
     public State getState() {
         return state;
@@ -44,16 +52,16 @@ public class Activity {
         return attendant;
     }
 
-    public void setAttendant(Usuario responsable) {
-        this.attendant = responsable;
+    public void setAttendant(Usuario attendant) {
+        this.attendant = attendant;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String nombre) {
-        this.name = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getId() {

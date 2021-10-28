@@ -26,7 +26,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> doLogin(@RequestBody LoginRequest loginRequest) {
         try {
-            Usuario locatedUser = userRepository.findUsuarioByEmail(loginRequest.getUser());
+            Usuario locatedUser = userRepository.findFirstByEmail(loginRequest.getUser());
             if (BCrypt.checkpw(loginRequest.getPasskey(), locatedUser.getContrasenia())) {
                 HttpHeaders headers = new HttpHeaders();
                 headers.add("Authorization", JWTController.getJWTToken(loginRequest.getUser()));
@@ -46,7 +46,7 @@ public class UserController {
     public ResponseEntity<?> signUp(@RequestBody Usuario usuario) {
 
         try {
-            Usuario locatedUser = userRepository.findUsuarioByEmail(usuario.getEmail());
+            Usuario locatedUser = userRepository.findFirstByEmail(usuario.getEmail());
             if (locatedUser != null)
                 return new ResponseEntity<>("El correo solicitado ya se encuentra registrado", HttpStatus.BAD_REQUEST);
 

@@ -12,28 +12,31 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rol", nullable = false)
+    @JsonProperty
     private Integer id;
 
     @Column(name = "nombre", length = 50)
+    @JsonProperty
     private String name;
 
     @Column(name = "descripcion", length = 100)
-    private String description;
+    @JsonProperty
+    private String descripcion;
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescription(String descripcion) {
-        this.description = descripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String nombre) {
-        this.name = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getId() {

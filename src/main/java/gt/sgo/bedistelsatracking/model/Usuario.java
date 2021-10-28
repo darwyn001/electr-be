@@ -3,17 +3,19 @@ package gt.sgo.bedistelsatracking.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @JsonSerialize
 @Entity
 public class Usuario {
     @Id
     @GeneratedValue
-    long id_usuario;
+    @Column(name = "id_usuario", nullable = false)
+    @JsonProperty("id")
+    long idUsuario;
 
     @JsonProperty("name")
     String nombre;
@@ -21,10 +23,10 @@ public class Usuario {
     String apellido;
     @JsonProperty("email")
     String email;
-    @JsonProperty("password")
+    @JsonProperty(value = "password", access = JsonProperty.Access.WRITE_ONLY)
     String contrasenia;
     @JsonProperty("employe_id")
-    int codigo_empleado;
+    int codigoEmpleado;
 
     public String getContrasenia() {
         return contrasenia;
@@ -37,4 +39,9 @@ public class Usuario {
     public String getEmail() {
         return email;
     }
+
+    public long getidUsuario() {
+        return idUsuario;
+    }
+
 }

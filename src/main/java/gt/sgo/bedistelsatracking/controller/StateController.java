@@ -1,6 +1,5 @@
 package gt.sgo.bedistelsatracking.controller;
 
-import gt.sgo.bedistelsatracking.model.Activity;
 import gt.sgo.bedistelsatracking.model.ResponseModel;
 import gt.sgo.bedistelsatracking.model.State;
 import gt.sgo.bedistelsatracking.repository.StateRepository;
