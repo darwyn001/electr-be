@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize
 public class LoginRequest {
-    @JsonProperty("user")
+    @JsonProperty("email")
     String user;
     @JsonProperty("password")
     String passkey;

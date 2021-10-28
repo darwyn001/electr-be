@@ -25,7 +25,7 @@ public class LoginResponse {
     }
 
     public static LoginResponse userToLoginResponse(Usuario usuario) {
-        LoginResponse x = new LoginResponse(usuario.id_usuario, usuario.nombre, usuario.apellido, usuario.email, usuario.codigo_empleado);
+        LoginResponse x = new LoginResponse(usuario.idUsuario, usuario.nombre, usuario.apellido, usuario.email, usuario.codigoEmpleado);
         return x;
     }
 }
